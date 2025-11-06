@@ -18,6 +18,11 @@ jobs:
           git clone --depth=1 https://github.com/dortania/OpenCore-Legacy-Patcher.git source
           cd source
           echo "✅ Source cloned."
+          
+      - name: List cloned files (debug)
+        run: |
+         ls -R source | head -40
+
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
