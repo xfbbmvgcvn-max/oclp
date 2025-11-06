@@ -26,7 +26,8 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip setuptools wheel
-          python3 -m pip install wxPython pyinstaller macholib || true
+          python3 -m pip install wxPython pyinstaller macholib pyobjc
+
 
       - name: Debug list repo files
         run: |
