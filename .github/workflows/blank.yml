@@ -16,7 +16,6 @@ jobs:
         run: |
           echo "⬇️ Cloning official Dortania OpenCore-Legacy-Patcher..."
           git clone --depth=1 https://github.com/dortania/OpenCore-Legacy-Patcher.git source
-          cd source
           echo "✅ Source cloned."
 
       - name: Set up Python 3.11
@@ -31,10 +30,10 @@ jobs:
 
       - name: Debug: list repo files
         run: |
-          echo "📂 Repository structure:"
+          echo "📂 Repository structure (first 40 lines):"
           ls -R source | head -40
 
-      - name: Build OCLP GUI (auto-detect mode)
+      - name: Build OCLP GUI (auto-detect)
         run: |
           cd source
           echo "🚀 Attempting to build OpenCore Patcher GUI..."
