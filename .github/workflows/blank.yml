@@ -14,9 +14,9 @@ jobs:
 
       - name: Clone official OCLP source
         run: |
-          echo "⬇️ Cloning official Dortania OpenCore-Legacy-Patcher..."
+          echo "Cloning official Dortania OpenCore-Legacy-Patcher..."
           git clone --depth=1 https://github.com/dortania/OpenCore-Legacy-Patcher.git source
-          echo "✅ Source cloned."
+          echo "Source cloned."
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -28,33 +28,33 @@ jobs:
           python3 -m pip install --upgrade pip setuptools wheel
           python3 -m pip install wxPython pyinstaller macholib || true
 
-      - name: Debug: list repo files
+      - name: Debug list repo files
         run: |
-          echo "📂 Repository structure (first 40 lines):"
+          echo "Repository structure (first 40 lines):"
           ls -R source | head -40
 
       - name: Build OCLP GUI (auto-detect)
         run: |
           cd source
-          echo "🚀 Attempting to build OpenCore Patcher GUI..."
+          echo "Attempting to build OpenCore Patcher GUI..."
           if [ -f Build-Binary.py ]; then
-            echo "Found Build-Binary.py ✅"
+            echo "Found Build-Binary.py"
             python3 Build-Binary.py --gui
           elif [ -f Scripts/Build-Binary.py ]; then
-            echo "Found Scripts/Build-Binary.py ✅"
+            echo "Found Scripts/Build-Binary.py"
             python3 Scripts/Build-Binary.py --gui
           elif [ -f OpenCore-Patcher-GUI.command ]; then
-            echo "Found OpenCore-Patcher-GUI.command ✅"
+            echo "Found OpenCore-Patcher-GUI.command"
             chmod +x OpenCore-Patcher-GUI.command
             ./OpenCore-Patcher-GUI.command --build
           elif [ -f Build.py ]; then
-            echo "Found Build.py ✅"
+            echo "Found Build.py"
             python3 Build.py
           else
-            echo "❌ No known build script found, stopping."
+            echo "No known build script found, stopping."
             exit 1
           fi
-          echo "✅ Build complete."
+          echo "Build complete."
           ls -lh ./dist || true
 
       - name: Locate built .app
@@ -77,7 +77,7 @@ jobs:
             --version 3.0.0-nightly \
             --install-location / \
             dist/OpenCore-Patcher-Nightly.pkg
-          echo "✅ .pkg created successfully."
+          echo ".pkg created successfully."
           ls -lh dist/
 
       - name: Upload .pkg artifact
